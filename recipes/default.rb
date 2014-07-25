@@ -58,6 +58,8 @@ rescue
   Chef::Log.info "Could not load data bag 'ssh_known_hosts'"
 end
 
+hosts.sort!  { |a, b| a['fqdn'] <=> b['fqdn'] }
+
 # Loop over the hosts and add 'em
 hosts.each do |host|
   unless host['key'].nil?
